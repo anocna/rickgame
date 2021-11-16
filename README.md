@@ -1,0 +1,2 @@
+# rickgame
+Pygame - VisualStudio
