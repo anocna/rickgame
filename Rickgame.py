@@ -1,15 +1,18 @@
 from os import kill
 import pygame
 import random
+import time
 
 from pygame import sprite
+from pygame import draw
+from pygame.constants import K_a
 
 #Tamaño de pantalla
 ANCHO = 800
 ALTO = 400
 
 #FPS
-FPS = 30
+FPS = 40
 
 # Paleta de colores
 NEGRO = (0,0,0)
@@ -139,11 +142,9 @@ class Diamante(pygame.sprite.Sprite):
         # posiciones aleatorias 
         self.rect.y = random.randrange(ALTO - self.rect.height)
         self.rect.x = random.randrange(ANCHO - self.rect.width)
-
-    '''def update(self):
-        if not 
-            for x in range (random.randrange(6)+4):
-                diamantes.add(diamante)'''
+        self.contador = pygame.time.get_ticks()
+        self.numero = 300
+        self.puntos = 0
 
 
 
@@ -162,6 +163,8 @@ def muestra_texto(pantalla,fuente,texto,color, dimensiones, x, y):
     rectangulo = superficie.get_rect()
     rectangulo.center = (x, y)
     pantalla.blit(superficie,rectangulo)
+        
+        
 
 # Cargo el fondo
 fondo = pygame.transform.scale(pygame.image.load("imagenes/universo.jpg").convert(),(800,400))
@@ -184,20 +187,42 @@ sprites = pygame.sprite.Group()
 rocas = pygame.sprite.Group()
 diamantes = pygame.sprite.Group()
 dificultad = 6 # variante a la cual iremos incrementando
+niveles = 1
+
 
 # Ingresamos diamantes aleatorios
-for x in range (random.randrange(dificultad)+2): # el mas dos es para que minimo aparezcan dos diamantes
-    diamante = Diamante()
-    diamantes.add(diamante)
+def generar_diamantes():
+    puntuacion = 0
+    for x in range (0,dificultad): #(random.randrange(dificultad)+2): # el mas dos es para que minimo aparezcan dos diamantes
+        diamante = Diamante()
+        diamantes.add(diamante)
+        #diamante.puntos += 10
+
+generar_diamantes()
 
 # Ingresamos las rocas con una cantidad aleatoria y nos aseguramos que nunca quede en cero con el +4
-for x in range (random.randrange(dificultad)+4):
-    roca = Roca()
-    rocas.add(roca)
+def generar_rocas():
+    for x in range (random.randrange(dificultad)+4):
+        roca = Roca()
+        rocas.add(roca)
+        
+
+generar_rocas()
 
 # Ingresamos al jugador
 jugador = Jugador()
 sprites.add(jugador)
+
+
+def nivel():
+    pantalla.fill(CELESTE)
+    muestra_texto(pantalla, consolas, "Siguiente Nivel...", BLANCO, 50, ANCHO // 2, ALTO // 2)
+    
+
+        
+        
+def pausa():
+    time.sleep(4)
 
 
 # Bucle de juego
@@ -255,12 +280,19 @@ while ejecutando:
     captura = pygame.sprite.spritecollide(jugador, diamantes, True, pygame.sprite.collide_circle)
     if captura:
         puntuacion += 10
-  
+        if puntuacion >= 60:
+            nivel()
+            generar_diamantes()
+            puntuacion = 0
+            generar_rocas()
+            niveles +=1
+            
+
 
     # Mostrar texto
     muestra_texto(pantalla, consolas, "Puntuacion: "+str(puntuacion), BLANCO, 15, 700, 15)
     muestra_texto(pantalla, consolas, "Vidas: ", BLANCO, 15, 680, 35)
-
+    muestra_texto(pantalla, consolas, "Nivel: "+ str(niveles), BLANCO, 15, 35, 15)
 
     # Fondo de pantalla, dibujo de sprites y formas geométricas.
     sprites.draw(pantalla)
