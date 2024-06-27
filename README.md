@@ -37,5 +37,10 @@ pip install pygame
 Esto descargará e instalará pygame y sus dependencias necesarias.
 
 captura de pantalla
-![image](https://github.com/anocna/rickgame/assets/62865821/a689df2e-5f2a-4ed8-9dc9-ef970a75fb69)
+
+![image](https://github.com/anocna/rickgame/assets/62865821/67d6a268-6840-4a4b-8343-e2b5c75dcf83)
+
+
+![image](https://github.com/anocna/rickgame/assets/62865821/6ffd04f8-e6cd-4d2b-8076-8d09d0d2319c)
+
 
