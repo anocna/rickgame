@@ -35,3 +35,7 @@ bash
 Copiar código
 pip install pygame
 Esto descargará e instalará pygame y sus dependencias necesarias.
+
+captura de pantalla
+![image](https://github.com/anocna/rickgame/assets/62865821/a689df2e-5f2a-4ed8-9dc9-ef970a75fb69)
+
