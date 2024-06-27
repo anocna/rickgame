@@ -15,3 +15,23 @@ Python: Lenguaje principal utilizado para la implementación del juego.
 Pygame: Biblioteca de Python utilizada para el desarrollo de juegos 2D, gestionando gráficos, sonidos y eventos.
 IDE y Editores de Texto: Uso de entornos como PyCharm, Visual Studio Code y/o Jupyter Notebook para la codificación y depuración del juego.
 Recursos Gráficos: Utilización de imágenes y sonidos obtenidos de recursos libres y personalizados para los elementos visuales del juego.
+
+
+para ejecutarlo se necesita tener instalado python, (para verificarlo --> python --version)
+
+Luego se necesita Pygame -->
+
+Instalación de Pygame
+Sigue estos pasos para instalar pygame:
+
+Abrir la terminal:
+
+Abre PowerShell o CMD en tu computadora.
+Instalar Pygame:
+
+Escribe el siguiente comando y presiona Enter:
+
+bash
+Copiar código
+pip install pygame
+Esto descargará e instalará pygame y sus dependencias necesarias.
